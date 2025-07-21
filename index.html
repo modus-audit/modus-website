@@ -2,82 +2,566 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Modus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modus - AI-Powered Audit Solutions</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
-    body, html {
+    :root {
+      --primary-green: #10b981;
+      --dark-green: #059669;
+      --accent-green: #6ee7b7;
+      --navy: #1e293b;
+      --dark-navy: #0f172a;
+      --light-gray: #f8fafc;
+      --medium-gray: #64748b;
+      --dark-gray: #374151;
+      --white: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      color: white;
+      box-sizing: border-box;
     }
 
-    .hero {
-      background: url('background.jpg') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 10%;
-      padding-right: 10%;
-      background-color: rgba(0, 0, 0, 0.6); /* fallback color */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--navy);
     }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      height: 100%;
-      width: 100%;
-      position: absolute;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
       top: 0;
-      left: 0;
+      width: 100%;
+      background: transparent;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: background-color 0.3s ease;
     }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
+    .nav.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
     }
 
     .logo {
-      letter-spacing: 2px;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
 
-    .title {
-      font-size: 3rem;
-      font-weight: bold;
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-green);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.jpg') center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
       line-height: 1.2;
     }
 
-    .title .highlight {
-      color: #22c55e; /* Tailwind's green-500 */
+    .hero .highlight {
+      color: var(--accent-green);
     }
 
-    .subtitle {
-      margin-top: 1.5rem;
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--white);
+      color: var(--navy);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
       font-size: 1.1rem;
-      opacity: 0.85;
-      line-height: 1.5;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+    }
+
+    .cta-button:hover {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 0;
+      background: var(--light-gray);
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--navy);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: var(--white);
+      font-weight: bold;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+    }
+
+    .feature-subtitle {
+      font-size: 0.9rem;
+      color: var(--dark-green);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--medium-gray);
+      line-height: 1.6;
+    }
+
+    /* Testimonial Section */
+    .testimonial {
+      padding: 6rem 0;
+      background: var(--white);
+    }
+
+    .testimonial-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .testimonial h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--navy);
+    }
+
+    .testimonial-quote {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--medium-gray);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 6rem 0;
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta .cta-button {
+      background: var(--primary-green);
+      color: var(--white);
+      font-size: 1.2rem;
+      padding: 1.25rem 2.5rem;
+      border: 2px solid var(--primary-green);
+    }
+
+    .cta .cta-button:hover {
+      background: transparent;
+      color: var(--primary-green);
+      border-color: var(--primary-green);
+      transform: translateY(-2px);
+    }
+
+    /* Security Section */
+    .security {
+      padding: 6rem 0;
+      background: var(--dark-navy);
+      color: var(--white);
+    }
+
+    .security h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .security-item {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .security-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-green);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .security-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .security-item p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #0f172a;
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      height: 30px;
+      width: auto;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--primary-green);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .features h2,
+      .testimonial h2,
+      .security h2 {
+        font-size: 2rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 80px;
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="overlay"></div>
-    <div class="content">
-      <div class="logo">MODUS</div>
-      <div class="title">
-        <span class="highlight">Faster, more comprehensive</span> financial audits.
-      </div>
-      <div class="subtitle">
-        Modus brings clarity to every corner of your financials with cutting-edge technology.
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-container">
+        <a href="#home" class="logo">
+          <img src="logo.png" alt="Modus">
+        </a>
+        <ul class="nav-menu">
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#testimonial" class="nav-link">Testimonials</a></li>
+          <li><a href="#security" class="nav-link">Security</a></li>
+          <li><a href="#cta" class="nav-link">Contact</a></li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Modus brings <span class="highlight">clarity to every corner</span> of your audit with cutting‑edge AI.</h1>
+        <p>Transform your audit process with intelligent automation, faster integrations, and unparalleled accuracy.</p>
+        <a href="#cta" class="cta-button">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Powerful AI-Driven Capabilities</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>FASTER</h3>
+          <div class="feature-subtitle">Integrations to any data source</div>
+          <p>Connect to ERPs, cloud storage, and email systems in minutes, not days. Streamline your data collection process with seamless integrations.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>INTELLIGENT</h3>
+          <div class="feature-subtitle">AI extracts the most important data</div>
+          <p>Turn unstructured files into actionable insights. Our AI automatically identifies and extracts critical information from every document.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">✓</div>
+          <h3>ACCURATE</h3>
+          <div class="feature-subtitle">Automation for testing & matching reconciliation</div>
+          <p>Eliminate manual errors and ensure 100% coverage. Automated testing and reconciliation processes deliver consistent, reliable results.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3>CUSTOM</h3>
+          <div class="feature-subtitle">Analytics across verticals</div>
+          <p>Insights tailored to your firm's unique workflows. Specialized analytics for benefit plans, financial services, manufacturing, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section id="testimonial" class="testimonial">
+    <div class="container">
+      <div class="testimonial-content">
+        <h2>Trusted by Industry Leaders</h2>
+        <blockquote class="testimonial-quote">
+          "Modus transformed our audit process by cutting weeks off document review and reconciliations. We reclaimed hundreds of audit hours per engagement, and the Modus team worked alongside us to customize the AI to our exact workflows. Now we approach every audit with unparalleled speed, accuracy, and confidence."
+        </blockquote>
+        <div class="testimonial-author">— Top 75 CPA Firm Partner</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta" class="cta">
+    <div class="container">
+      <h2>Schedule Your Demo</h2>
+      <p>Discover how Modus accelerates your next audit.</p>
+      <a href="https://calendly.com/pranav-pillai-modusaudit/30min" class="cta-button" target="_blank">Schedule Your Demo</a>
+    </div>
+  </section>
+
+  <!-- Security Section -->
+  <section id="security" class="security">
+    <div class="container">
+      <h2>Security & Compliance Highlights</h2>
+      <div class="security-grid">
+        <div class="security-item">
+          <div class="security-icon">🔒</div>
+          <h3>SOC 2 Type II</h3>
+          <p>Comprehensive security controls and monitoring via Oneleet</p>
+        </div>
+        
+        <div class="security-item">
+          <div class="security-icon">🛡️</div>
+          <h3>Zero Data Retention</h3>
+          <p>Your data will never be used to train public LLMs - it remains isolated and protected</p>
+        </div>
+        
+        <div class="security-item">
+          <div class="security-icon">📋</div>
+          <h3>Standards Aligned</h3>
+          <p>AU‑C 230, AS 1215, NIST SP 800‑53, ISO/IEC 27001 compliant</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Modus">
+        </div>
+        <ul class="footer-nav">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#testimonial">Testimonials</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#cta">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Modus. All rights reserved. | Bringing clarity to every corner of your audit.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Add scrolled class to navbar when scrolling
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>

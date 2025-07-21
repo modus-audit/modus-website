@@ -33,7 +33,7 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1500px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -91,7 +91,7 @@
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.jpg') center/cover;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('background.jpg') center/cover;
       height: 100vh;
       display: flex;
       align-items: center;
@@ -249,6 +249,82 @@
     .testimonial-author {
       font-weight: 600;
       color: var(--navy);
+    }
+
+    /* Engagement Model Section */
+    .engagement {
+      padding: 6rem 0;
+      background: var(--light-gray);
+    }
+
+    .engagement h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--navy);
+    }
+
+    .engagement .subtitle {
+      text-align: center;
+      font-size: 1.25rem;
+      color: var(--medium-gray);
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .engagement-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .engagement-steps {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .engagement-step {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: var(--primary-green);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .engagement-step h3 {
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+
+    .engagement-step p {
+      color: var(--medium-gray);
+      line-height: 1.6;
     }
 
     /* CTA Section */
@@ -431,6 +507,7 @@
         <ul class="nav-menu">
           <li><a href="#features" class="nav-link">Features</a></li>
           <li><a href="#testimonial" class="nav-link">Testimonials</a></li>
+          <li><a href="#engagement" class="nav-link">How We Engage</a></li>
           <li><a href="#security" class="nav-link">Security</a></li>
           <li><a href="#cta" class="nav-link">Contact</a></li>
         </ul>
@@ -460,28 +537,28 @@
               <path d="M6.5 3C6.5 2.17 7.17 1.5 8 1.5S9.5 2.17 9.5 3V6H14.5V3C14.5 2.17 15.17 1.5 16 1.5S17.5 2.17 17.5 3V6H20C21.1 6 22 6.9 22 8V10C22 11.1 21.1 12 20 12H19V18C19 19.1 18.1 20 17 20H7C5.9 20 5 19.1 5 18V12H4C2.9 12 2 11.1 2 10V8C2 6.9 2.9 6 4 6H6.5V3M7 14H17V18H7V14Z"/>
             </svg>
           </div>
-          <h3>10x FASTER</h3>
+          <h3>10x Faster Integration</h3>
           <div class="feature-subtitle">Connect to any data source in minutes</div>
           <p>Integrate ERPs, cloud storage, and email systems instantly. Cut data collection time from days to minutes with seamless one-click connections.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">◉</div>
-          <h3>99% ACCURATE</h3>
+          <h3>99% Accurate Parsing</h3>
           <div class="feature-subtitle">AI identifies critical data automatically</div>
           <p>Transform unstructured documents into structured insights. Advanced AI extracts key information with audit-grade precision and maintains a complete audit trail for every extraction.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">✓</div>
-          <h3>ZERO ERRORS</h3>
+          <h3>100% Coverage</h3>
           <div class="feature-subtitle">Automated testing & reconciliation</div>
-          <p>Eliminate manual mistakes with 100% coverage testing. Automated reconciliation processes ensure consistent, audit-ready results every time.</p>
+          <p>No more sampling—review every transaction automatically. Eliminate manual mistakes with 100% coverage testing. Automated reconciliation processes ensure consistent, audit-ready results every time.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">⚙</div>
-          <h3>CUSTOM AI</h3>
+          <h3>Custom AI</h3>
           <div class="feature-subtitle">Agents for every vertical and workflow</div>
           <p>Customized workflows for your firm's specific needs. Pre-built analytics for benefit plans, financial services, manufacturing, and beyond.</p>
         </div>
@@ -498,6 +575,33 @@
           "Modus transformed our audit process by cutting weeks off document review and reconciliations. We reclaimed hundreds of audit hours per engagement, and the Modus team worked alongside us to customize the AI to our exact workflows. Now we approach every audit with unparalleled speed, accuracy, and confidence."
         </blockquote>
         <div class="testimonial-author">— Top 75 CPA Firm Partner</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement Model Section -->
+  <section id="engagement" class="engagement">
+    <div class="container">
+      <h2>Week to Workflow</h2>
+      <p class="subtitle">Our proven 3-step engagement model delivers results fast</p>
+      <div class="engagement-steps">
+        <div class="engagement-step">
+          <div class="step-number">1</div>
+          <h3>Shadow + Understand Pain Points</h3>
+          <p>We work alongside your team to understand your current audit workflows, identify bottlenecks, and map out improvement opportunities in your specific context.</p>
+        </div>
+        
+        <div class="engagement-step">
+          <div class="step-number">2</div>
+          <h3>Build a v1 AI Workflow on Sample Data</h3>
+          <p>Using your actual data samples, we rapidly prototype and refine AI-powered workflows tailored to your firm's methodology and client requirements.</p>
+        </div>
+        
+        <div class="engagement-step">
+          <div class="step-number">3</div>
+          <h3>Deliver Agentic, Automated Workflow by Week's End</h3>
+          <p>Deploy production-ready AI agents that seamlessly integrate with your existing systems, delivering immediate value and measurable time savings.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -547,6 +651,7 @@
         <ul class="footer-nav">
           <li><a href="#features">Features</a></li>
           <li><a href="#testimonial">Testimonials</a></li>
+          <li><a href="#engagement">How We Engage</a></li>
           <li><a href="#security">Security</a></li>
           <li><a href="#cta">Contact</a></li>
         </ul>
